@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpRequest
+from projects.models import Project
 
 
 def index(request: HttpRequest) -> HttpResponse:
@@ -7,4 +8,7 @@ def index(request: HttpRequest) -> HttpResponse:
 
 
 def project_list(request: HttpRequest) -> HttpResponse:
-    return render(request, 'projects/index.html')
+    projects = Project.objects.all()
+    return render(request, 'projects/index.html', {
+        'projects': projects
+    })
