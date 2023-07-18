@@ -12,3 +12,11 @@ def project_list(request: HttpRequest) -> HttpResponse:
     return render(request, 'projects/index.html', {
         'projects': projects
     })
+
+def project_detail(request: HttpRequest, pk: int) -> HttpResponse:
+    project = Project.objects.get(pk=pk)
+    return render(
+        request, 'projects/detail.html', {
+            'project': project
+        }
+    )
